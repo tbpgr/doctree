@@ -92,6 +92,17 @@ Rakefile 内の最新の詳細説明を追跡するためのメソッドです�
 
 @return [task_name, arg_name_list, prerequisites] を返します。
 
+#@samplecode
+# Rakefile での記載例とする
+
+task default: :test_rake_app
+
+task :test_rake_app do |task|
+  task.application.resolve_args([:t, [:a, :b]])       # => [:t, [:a, :b], []]
+  task.application.resolve_args([:t, [:a, :b] => :x]) # => [:t, [:a, :b], [:x]]
+end
+#@end
+
 --- synthesize_file_task(task_name) -> Rake::FileTask | nil
 
 与えられたタスク名をもとにファイルタスクを合成します。
